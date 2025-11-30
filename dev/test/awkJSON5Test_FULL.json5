@@ -1,0 +1,471 @@
+﻿/*
+    All test cases
+*/
+{
+ cases: [
+    {
+      "case": 1,
+      "desc_DE": "Einfaches Objekt",
+      "desc_EN": "Simple object",
+      data: { "a": 1, "b": 2 }
+    },
+    {
+      "case": 2,
+      "desc_DE": "Verschachteltes Objekt",
+      "desc_EN": "Nested object",
+      data: { "a": 1, "b": { "c": 3, "d": 4 } }
+    },
+    {
+      "case": 3,
+      "desc_DE": "Array",
+      "desc_EN": "Array",
+      data: [1, 2, 3, 4]
+    },
+    {
+      "case": 4,
+      "desc_DE": "Verschachtelte Arrays",
+      "desc_EN": "Nested arrays",
+      data: [1, [2, 3], 4]
+    },
+    {
+      "case": 5,
+      "desc_DE": "Boolean und Null",
+      "desc_EN": "Boolean and null",
+      data: { "t": true, "f": false, "n": null }
+    },
+    {
+      "case": 6,
+      "desc_DE": "Strings Double/Single Quotes",
+      "desc_EN": "Strings double/single quotes",
+      data: { "s1": "Hello", "s2": 'World' }
+    },
+    {
+      "case": 7,
+      "desc_DE": "Zahlen: int, float, negativ",
+      "desc_EN": "Numbers: int, float, negative",
+      data: { "i": 42, "f": 3.14, "n": -7 }
+    },
+    {
+      "case": 8,
+      "desc_DE": "JSON5 Kommentare",
+      "desc_EN": "JSON5 comments",
+      data: {
+        // einzeiliger Kommentar
+        "a": 1, /* mehrzeiliger
+        Kommentar */
+        "b": 2
+      }
+    },
+    {
+      "case": 9,
+      "desc_DE": "Bare identifiers / unquoted keys",
+      "desc_EN": "Bare identifiers / unquoted keys",
+      data: {
+        a: 1,
+        my_var$: 2,
+        _private: 3,
+        "quoted": 4,
+        'single': 5
+      }
+    },
+    {
+      "case": 10,
+      "desc_DE": "Komplexes JSON5 Beispiel",
+      "desc_EN": "Complex JSON5 example",
+      data: {
+        // Test JSON5
+        "obj": { "x": 1, "y": [true, false, null] },
+        "arr": [1, 2, { "z": "Hello" }],
+        "str": "Text\nmit Escape",
+        "singleStr": 'Single quoted'
+      }
+    },
+  /*
+    {
+      "case": 11,
+      ...
+    },
+  */
+    {
+      "case": 11,
+      "desc_DE": "Objekt mit vielen Whitespaces",
+      "desc_EN": "Object with lots of whitespaces",
+      data: {    "a"   :   1   ,    "b"    :   2   }
+    },
+    {
+      "case": 12,
+      "desc_DE": "Objekt mit Zeilenumbrüchen und Einrückungen",
+      "desc_EN": "Object with line breaks and indentation",
+      data: {
+        "a": 1,
+        "b": 2
+      }
+    },
+    {
+      "case": 13,
+      "desc_DE": "Array mit gemischten Whitespaces",
+      "desc_EN": "Array with mixed whitespaces",
+      data: [ 1 ,   2 ,    3 ,4   ]
+    },
+    {
+      "case": 14,
+      "desc_DE": "Verschachteltes Objekt mit Einrückungen und Leerzeilen",
+      "desc_EN": "Nested object with indentation and empty lines",
+      data: {
+        "a": 1,
+
+        "b": {
+          "c": 3,
+          "d": 4
+        }
+      }
+    },
+    {
+      "case": 15,
+      "desc_DE": "Array mit Zeilenumbrüchen",
+      "desc_EN": "Array with line breaks",
+      data: [
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    {
+      "case": 16,
+      "desc_DE": "Objekt mit Tabs",
+      "desc_EN": "Object with tabs",
+      data: { "x": 5, "y": 6 }
+    },
+    {
+      "case": 17,
+      "desc_DE": "Kombinierte Whitespaces, Kommentare und Zeilenumbrüche",
+      "desc_EN": "Combined whitespaces, comments and line breaks",
+      data: {
+        // Kommentar über a
+        a: 100, /* inline Kommentar */
+        b: [ 1 , 2 , 3 ]
+      }
+    },
+    {
+      "case": 18,
+      "desc_DE": "String mit Escapes und Leerzeichen",
+      "desc_EN": "String with escapes and whitespace",
+      data: { "text": "Line1\n   Line2   \tEnd" }
+    },
+    {
+      "case": 19,
+      "desc_DE": "Leeres Objekt mit Leerzeichen und Zeilenumbrüchen",
+      "desc_EN": "Empty object with whitespaces and line breaks",
+      data: {
+
+      }
+    },
+    {
+      "case": 20,
+      "desc_DE": "Stark eingerücktes Objekt mit vielen Leerzeichen",
+      "desc_EN": "Heavily indented object with many spaces",
+      data: {
+            "key1"     :     1,
+            "key2"     :     2
+      }
+    },
+    {
+      "case": 21,
+      "desc_DE": "Objekt mit Leerzeichen um geschweifte Klammern",
+      "desc_EN": "Object with spaces around braces",
+      data: { "a"   :   1   , "b"   :   2 }
+    },
+    {
+      "case": 22,
+      "desc_DE": "Array mit unregelmässigen Whitespaces",
+      "desc_EN": "Array with irregular whitespaces",
+      data: [ 1 , 2 , 3 , 4 ]
+    },
+    {
+      "case": 23,
+      "desc_DE": "Verschachtelte Arrays mit Whitespaces",
+      "desc_EN": "Nested arrays with whitespaces",
+      data: {},
+    },
+    {
+      "case": 24,
+      "desc_DE": "Objekt mit Zeilenende-Kommas und Whitespaces",
+      "desc_EN": "Object with trailing commas and whitespaces",
+      data: {
+        "a": 1   ,
+        "b": 2   ,
+        "c": 3
+      }
+    },
+    {
+      "case": 25,
+      "desc_DE": "Array mit vielen Zeilenumbrüchen und Tabs",
+      "desc_EN": "Array with many line breaks and tabs",
+      data: [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "case": 26,
+      "desc_DE": "Objekt mit gemischten Whitespaces, Tabs und Leerzeilen",
+      "desc_EN": "Object with mixed whitespaces, tabs, and empty lines",
+      data: {
+        "a": 10,
+
+
+        "b": 20,
+          "c": 30
+      }
+    },
+    {
+      "case": 27,
+      "desc_DE": "Kommentar und Leerzeichen zwischen Key und Doppelpunkt",
+      "desc_EN": "Comment and spaces between key and colon",
+      data: {
+        "a"   // Kommentar
+          :   1,
+        "b"     :   2
+      }
+    },
+    {
+      "case": 28,
+      "desc_DE": "Objekt mit kommentierten Leerzeilen und Abständen",
+      "desc_EN": "Object with commented empty lines and spacing",
+      data: {
+        "a": 1,
+        // Leerzeile folgt
+
+        "b": 2
+      }
+    },
+
+    {
+      "case": 29,
+      "desc_DE": "Einfaches Objekt mit einzeiligem und mehrzeiligem Kommentar",
+      "desc_EN": "Simple object with single-line and multi-line comments",
+      data: { "a": 1, /* Einzeiliger Kommentar */ "b": 2 /*
+  Mehrzeiliger Kommentar
+  Zeile2
+  */ }
+    },
+    {
+      "case": 30,
+      "desc_DE": "Array mit einzeiligen Kommentaren zwischen Elementen",
+      "desc_EN": "Array with single-line comments between elements",
+      data: [1, /* Einzeiliger Kommentar */ 2, 3, 4]
+    },
+    {
+      "case": 31,
+      "desc_DE": "Array mit gemischten Kommentaren",
+      "desc_EN": "Array with mixed comments",
+      data: [1, /* Einzeiliger Kommentar */ 2, /*
+  Mehrzeiliger Kommentar Zeile1
+  Zeile2
+  */ 3, 4],
+    },
+    {
+      "case": 32,
+      "desc_DE": "Verschachteltes Objekt mit gemischten Kommentaren",
+      "desc_EN": "Nested object with mixed comments",
+      data: { "outer": { "inner1": 10 /* Einzeiliger Kommentar */, "inner2": 20 /*
+  Mehrzeiliger Kommentar Zeile1
+  Zeile2
+  */ } }
+    },
+    {
+      "case": 33,
+      "desc_DE": "Objekt mit Strings, Zahlen und gemischten Kommentaren",
+      "desc_EN": "Object with strings, numbers and mixed comments",
+      data: { "text": "Hello\nWorld" /*
+  Mehrzeiliger Kommentar vor Zahl
+  Zeile2
+  */, "num": -7 /* Einzeiliger Kommentar */ }
+    },
+    {
+      "case": 34,
+      "desc_DE": "Objekt mit unquoted Keys und gemischten Kommentaren",
+      "desc_EN": "Object with unquoted keys and mixed comments",
+      data: { a: 1 /* Kommentar vor Key a */, my_var$: 2 /*
+  Mehrzeiliger Kommentar Zeile1
+  Zeile2
+  */, _private: 3 }
+    },
+    {
+      "case": 35,
+      "desc_DE": "Verschachtelte Arrays mit gemischten Kommentaren",
+      "desc_EN": "Nested arrays with mixed comments",
+      data: { "data": [ [1,2] /* Einzeiliger Kommentar erstes Array */, [3,4] /*
+  Mehrzeiliger Kommentar zweites Array Zeile1
+  Zeile2 [[]]
+  */ ] }
+    },
+    {
+      "case": 36,
+      "desc_DE": "Array mit gemischten Kommentaren und Datentypen",
+      "desc_EN": "Array with mixed comments and data types",
+      data: [ true, false, null, "Hello", "World" /*
+  Mehrzeiliger Kommentar Zeile1
+  Zeile2
+  */, 42, 3.14, -7, /* Einzeiliger Kommentar am Ende */ 99 ]
+    },
+    {
+      "case": 37,
+      "desc_DE": "Komplexes Objekt mit gemischten Kommentaren, Leerzeilen und Tabs",
+      "desc_EN": "Complex object with mixed comments, blank lines, and tabs",
+      data: { "obj": { "x":1, "y":[true,false,null] }, "arr":[1,2,{ "z": "Hello" }], "str": "Text\nmit Escape", "singleStr": 'Single quoted' /* Einzeiliger Kommentar */ /*
+  Mehrzeiliger Kommentar Zeile1
+  Zeile2
+  */ }
+    },
+    {
+      "case": 38,
+      "desc_DE": "Objekt mit verschachtelten Arrays/Objekten und gemischten Kommentaren",
+      "desc_EN": "Object with nested arrays/objects and mixed comments",
+      data: { "data": [ [1,2] /* Einzeiliger Kommentar */, [3,4] /*
+  Mehrzeiliger Kommentar Array2 Zeile1
+  Zeile2
+  */ ], "status": true /* Einzeiliger Kommentar */ }
+    },
+    {
+      "case": 39,
+      "desc_DE": "Hexadezimale Zahlen",
+      "desc_EN": "Hexadecimal numbers",
+      data: { "hex1": 0x1A, "hex2": 0xFF }
+    },
+    {
+      "case": 40,
+      "desc_DE": "Infinity und NaN",
+      "desc_EN": "Infinity and NaN",
+      data: { "inf": Infinity, "posInf": +Infinity,  "negInf": -Infinity, "nan": NaN }
+    },
+    {
+      "case": 41,
+      "desc_DE": "Exponentielle Notation",
+      "desc_EN": "Exponential notation",
+      data: { "exp1": 1e3, "exp2": -2.5E-2, "exp3": 4.2e+2 }
+    },
+    {
+      "case": 42,
+      "desc_DE": "Unicode Escapes \\uXXXX",
+      "desc_EN": "Unicode escapes \\uXXXX",
+      data: { "unicode1": "\\u0041", "unicode2": "\\u03A9" }
+    },
+    {
+      "case": 43,
+      "desc_DE": "Unicode Escapes \\u{XXXXXX}",
+      "desc_EN": "Unicode escapes \\u{XXXXXX}",
+      data: { "unicodeCodePoint": "\\u{1F600}" }
+    },
+    {
+      "case": 44,
+      "desc_DE": "Komplexe Bare Identifiers mit $, _ und Unicode",
+      "desc_EN": "Complex bare identifiers with $, _ and Unicode",
+      data: { a$: 1, _private_: 2, αβγ: 3, δ_δ$: 4, $:'Dollar', _:'Underscore' }
+    },
+    {
+      "case": 45,
+      "desc_DE": "Gemischte Typen: Hex, Exponential, Infinity, NaN, Bare Identifiers",
+      "desc_EN": "Mixed types: hex, exponential, Infinity, NaN, bare identifiers",
+      data: { "numHex": 0x10, "numExp": 2.5e3, "valInf": Infinity, "valNaN": NaN, my_var$: 123, π_val: 3.14 }
+    },
+    {
+      "case": 46,
+      "desc_DE": "Bare Identifiers mit einfachen chinesischen Zeichen",
+      "desc_EN": "Bare identifiers with simple Chinese characters",
+      data: { 名字: "Alice", 年龄: 30 }
+    },
+    {
+      "case": 47,
+      "desc_DE": "Bare Identifiers mit chinesischen + ASCII/_, $",
+      "desc_EN": "Bare identifiers with Chinese + ASCII/_/$",
+      data: { 数据$: 123, _值: 456, 名称_1: "Test" }
+    },
+    {
+      "case": 48,
+      "desc_DE": "Verschachtelte Objekte mit chinesischen Bare Identifiers",
+      "desc_EN": "Nested objects with Chinese bare identifiers",
+      data: { 外层: { 内层1: 10, 内层2: 20 }, 状态: true }
+    },
+    {
+      "case": 49,
+      "desc_DE": "Array von Objekten mit chinesischen Bare Identifiers",
+      "desc_EN": "Array of objects with Chinese bare identifiers",
+      data: [ { 名: "张三", c: 95 }, { 名: "李四", 分数: 88 } ]
+    },
+    {
+      "case": 50,
+      "desc_DE": "Mischung aus chinesischen Bare Identifiers, Zahlen, Strings, Kommentare",
+      "desc_EN": "Mixed Chinese bare identifiers, numbers, strings, comments",
+      data: { 名字: "小明", 年龄: 12 , 分数$: 100, 状态: false }
+    },
+    {
+      "case": 51,
+      "desc_DE": "Unicode Escapes in unquoted Keys",
+      "desc_EN": "Unicode escapes in unquoted keys",
+      data: { \u0041: 1,
+              \u3A94: 2,
+              \u1F60: 3,
+              /*
+              sig\u03A3ma: "the sum of all things"*/
+            }
+    },
+    {
+      "case": 52,
+      "desc_DE": "Extrem verschachtelte Arrays",
+      "desc_EN": "Extremely nested arrays",
+      data13: [[[[[[[[[[[[[1]]]]]]]]]]]]],
+      data50: [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[1]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+    },
+    {
+      "case": 53,
+      "desc_DE": "Extrem verschachtelte Objekte",
+      "desc_EN": "Extremely nested objects",
+      data7: { a: { b: { c: { d: { e: { f: { g: 42 } } } } } } },
+    },
+    {
+      "case": 54,
+      "desc_DE": "String mit ungewöhnlichen Escape-Sequenzen",
+      "desc_EN": "String with unusual escape sequences",
+      data: { "text": "Line1\nLine2\t\u03A9\rEnd" }
+    },
+    {
+      "case": 55,
+      "desc_DE": "Unicode Escapes in Key + mehrzeiliger String mit Escapes",
+      "desc_EN": "Unicode escapes in key + multiline string with escapes",
+      data: { \u0041: "Hello \
+  World\t\u03B1" }
+    },
+    {
+      "case": 56,
+      "desc_DE": "Array mit Strings voller Escape-Sequenzen",
+      "desc_EN": "Array with strings containing many escape sequences",
+      data: [ "Tab\tNewline\nCarriage\r\u263A", "Text\n\u03A9" ]
+    },
+    {
+      "case": 57,
+      "desc_DE": "Mehrzeiliger String",
+      "desc_EN": "Multiline string",
+      data: { "multi\
+  line": "Line1...\
+  Line2...\
+  Line3..." }
+    },
+    {
+      "case": 58,
+      "desc_DE": "String mit escaped Quote",
+      "desc_EN": "String with escaped quote",
+      data: { "text": "Er sagte: \"Hallo Welt\"" }
+    },
+    {
+      "case": 59,
+      "desc_DE": "Gemischter Inhalt mit Pfad und escaped Quote",
+      "desc_EN": "Mixed content with path and escaped quote",
+      data: { "path": "C:\\Programme\\`\"Mein Ordner`\"", "msg": "Info: `\"OK`\"" }
+    }
+  ]
+
+}

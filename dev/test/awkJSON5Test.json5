@@ -1,0 +1,9 @@
+﻿
+{ \u03A3: "unquoted key",
+  sig\u03A3ma: "the sum of all things",
+"MLText\
+1": "Line1.\
+Line2.\
+Line3.\
+"
+}
