@@ -20,7 +20,7 @@ A **JSON5/JSON parser** and a **JSON stringifier**, designed for AutoHotkey v2.
 
 ## Installation
 
-The class is included in `awkJSON5.ahk`. Simply include it:
+A class `awkJSON5` is included in `awkJSON5.ahk`. Simply include it:
 
 ```ahk
 #Requires AutoHotkey v2.0
@@ -85,7 +85,7 @@ OutputDebugLine JSONText
 
 The implementation is encapsulated in the `awkJSON5` class, which provides parsing and stringify functions.
 
-### `awkJSON5.Parse(&string, fToObject := false)`
+#### `awkJSON5.Parse(&string, fToObject := false)`
 
 Parses a JSON or JSON5 string.
 
@@ -95,9 +95,9 @@ Parses a JSON or JSON5 string.
   * `fToObject` – `true` produces AHK objects, otherwise Maps
 * **Return**: Parsed JSON5 object / map
 
-### `awkJSON5.Stringify(fObj, fIndent := "")`
+#### `awkJSON5.Stringify(fObj, fIndent := "")`
 
-Converts AHK data structures ( objects or maps ) back to **JSON**.
+Converts AHK data structures ( objects or maps ) to a **JSON** string.
 
 * **Parameters**:
 
