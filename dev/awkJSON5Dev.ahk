@@ -143,7 +143,7 @@ class awkJSON5Dev {
         if (lCh == "}" || lCh == "" ) ;closed object / end of data
           break
         else if (lCh !== ",")
-          return _Throw("Expected ',' or '}'")
+          _Throw("Expected ',' or '}'")
         _pos++
       }
       _pos++
