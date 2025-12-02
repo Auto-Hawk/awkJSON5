@@ -109,7 +109,8 @@ Converts AHK data structures ( objects or maps ) to a **JSON** string.
 * **Parameters**:
 
   * `fObj` – the object / map to be stringified
-  * `fIndent` – character used to indent each level of the JSON tree
+  * `fIndent` – character(s) used to indent each level of the JSON tree.
+   <br>A Number indicates the number of spaces to use for each indent.
 * **Return**: JSON string
 
 ## Compatibility
