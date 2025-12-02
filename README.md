@@ -7,7 +7,7 @@ A **JSON5/JSON parser** and a **JSON stringifier**, designed for AutoHotkey v2.
 
 * **Parser:**
   * Supports JSON and JSON5 according to the specification
-  * May return AHk Objects ( `{}` ) and Maps ( `Map` )
+  * May return AHK Objects ( `{}` ) or Maps ( `Map` )
 
 * **Stringifier:** Generates JSON
 * JSON5 features:
