@@ -7,7 +7,7 @@ A **JSON5/JSON parser** and a **JSON stringifier**, designed for AutoHotkey v2.
 
 * **Parser:**
   * Supports JSON and JSON5 according to the specification
-  * May return AHk Objects ({}) and Maps (Map)
+  * May return AHk Objects ( `{}` ) and Maps ( `Map` )
 
 * **Stringifier:** Generates JSON
 * JSON5 features:
@@ -74,13 +74,16 @@ OutputDebugLine obj
 
 ```ahk
 #Requires AutoHotkey v2.0
-#Include Includes.ahk
+#Include lib\Includes.ahk
 
-JSONText := FileRead('awkJSON5Test_FULL.json5')
-;JSONText := FileRead('awkJSON5Test.json5')
-obj := awkJSON5Dev.Parse(&JSONText, true)
+obj := {
+   key: "value",
+   n: [ 1, 2, 3 ],
+   sigΣma: "the sum of all things",
+   nothing: ""
+}
 
-JSONText := awkJSON5Dev.Stringify(obj, 2)
+JSONText := awkJSON5.Stringify(obj, 2)
 
 OutputDebugLine JSONText
 ```
