@@ -12,8 +12,10 @@ A **JSON5/JSON parser** and a **JSON stringifier**, designed for AutoHotkey v2.
   * Unquoted keys
   * Single-quoted strings
   * Multiline strings
-  * Hexadecimal numbers
   * Trailing commas
+  * numbers may be hexadecimal
+  * numbers may be positive infinity, negative infinity, and NaN
+  * numbers may begin with an explicit plus sign
 * Pure AutoHotkey v2 implementation – no external dependencies
 
 ## Installation
@@ -81,8 +83,6 @@ OutputDebugLine JSONText
 
 ## API
 
-### Class Structure
-
 The implementation is encapsulated in the `awkJSON5` class, which provides parsing and stringify functions.
 
 ### `awkJSON5.Parse(&string, fToObject := false)`
@@ -97,7 +97,7 @@ Parses a JSON or JSON5 string.
 
 ### `awkJSON5.Stringify(fObj, fIndent := "")`
 
-Converts AHK data structures back to **JSON**.
+Converts AHK data structures ( objects or maps ) back to **JSON**.
 
 * **Parameters**:
 
