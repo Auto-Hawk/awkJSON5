@@ -23,7 +23,7 @@ class awkJSON5Dev {
    *
    * Notes:
    * - Comments (`//` or `/* ... */`) are supported, nested /**/ comments are not.
-   * - true/false/null are converted to AutoHotkeyV2 values (1/0/"") due new behaviour.
+   * - true / false / null are converted to AutoHotkeyV2 values (1 / 0 / "") due new behaviour.
    * - The JSON5 specification can be found at https://json5.org/
    */
   static Parse(&fSrc, fToObject := false) {
@@ -66,7 +66,7 @@ class awkJSON5Dev {
               _Throw("Invalid number literal: [" lVal "]")
             }
           }
-     } ;Parse number/special literal end *******************************************
+      } ;Parse number/special literal end *******************************************
 
     }
 
@@ -364,7 +364,7 @@ class awkJSON5Dev {
       return fQuote . lResult . fQuote
 	}
 
-  /** @description Unescapes a JSON String
+  /** @description Unescapes a JSON5/JSON String
    * @param {(String)} fStr - the string to be unescaped
    * @returns {(String)} Returns the unescaped JSON string.
    */
