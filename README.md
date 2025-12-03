@@ -80,7 +80,8 @@ obj := {
    key: "value",
    n: [ 1, 2, 3 ],
    sigΣma: "the sum of all things",
-   nothing: ""
+   nothing: "",
+   bool: true
 }
 
 JSONText := awkJSON5.Stringify(obj, 2)
@@ -116,6 +117,7 @@ Converts AHK data structures ( objects or maps ) to a **JSON** string.
 ## Compatibility
 
 * AutoHotkey v2
+* Tested with 2.0.19
 
 ## Development Status
 

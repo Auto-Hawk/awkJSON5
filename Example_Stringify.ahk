@@ -5,7 +5,8 @@ obj := {
    key: "value",
    n: [ 1, 2, 3 ],
    sigΣma: "the sum of all things",
-   nothing: ""
+   nothing: "",
+   bool: true
 }
 
 JSONText := awkJSON5.Stringify(obj, 2)
