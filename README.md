@@ -130,4 +130,5 @@ Version **1.0.0** – stable.
 
 ## License
 
-MIT License
+MIT License<br>
+see https://opensource.org/licenses/MIT

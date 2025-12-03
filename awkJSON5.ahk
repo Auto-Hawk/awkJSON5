@@ -1,4 +1,8 @@
-﻿#Requires AutoHotkey v2.0
+﻿/*
+ * Copyright (c) 2025 Auto-Hawk
+ * Full license text: https://opensource.org/licenses/MIT
+ * /
+#Requires AutoHotkey v2.0
 
 /** @description JSON/JSON5-Parser / JSON-Stringifier
   * @author      Auto-Hawk
