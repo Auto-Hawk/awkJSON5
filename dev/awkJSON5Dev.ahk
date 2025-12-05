@@ -262,10 +262,10 @@ class awkJSON5Dev {
 
   /** @description JSON Stringify
 	 * @param {(Map|Object)} fObj - the object / map to be stringified
-	 * @param {(String|Number)} [fIndent=""] - Defines the character used to indent each level of the JSON tree.
-   *  Number indicates the number of spaces to use for each indent.
-   *  String indiciates the characters to use. '`t' would be 1 tab for each indent level.
-   *  If omitted or an empty string is passed in, the JSON string will export as a single line of text.
+	 * @param {(String|Number)} [fIndent=""] - Defines the indent used to indent each level of the JSON tree.<br>
+   * - Number indicates the number of spaces to use for each indent.<br>
+   * - String indiciates the characters to use, i.e. '`t' would be 1 tab for each indent level.<br>
+   * - If omitted or an empty string is passed in, the JSON string will export as a single line of text.
    * @returns {(String)} Returns a JSON string.
    */
   static Stringify(fObj, fIndent := "") {

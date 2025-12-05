@@ -1,4 +1,5 @@
-﻿#Requires AutoHotkey v2.0
+﻿; This work is released into the public domain under CC0 1.0 Universal.
+#Requires AutoHotkey v2.0
 
 /** @description Returns the system's default web browser executable.
   */
