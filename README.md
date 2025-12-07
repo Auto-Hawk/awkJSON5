@@ -22,6 +22,12 @@ A **JSON5/JSON parser** and a **JSON stringifier**, designed for AutoHotkey v2.
   * numbers may begin with an explicit plus sign
 * Pure AutoHotkey v2 implementation – no external dependencies
 
+* **AutoHotKey Limitations**<br>
+
+  * True boolean values are not supported; they are treated internally as 1 or 0. Consequently, the stringifier does not convert boolean literals correctly and neither does the parser.
+  * There is no representation for NULL, so the parser converts this value to an empty string.
+  * There is no representation of NaN and (+/-)Infinity, so the parser converts this value to a string.
+
 ## Installation
 
 A class `awkJSON5` is included in `awkJSON5.ahk`. Simply include it:

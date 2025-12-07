@@ -23,11 +23,15 @@ M3: `"(M3)multiline\\\`rNew Line`",
  unquotedKey: 'single quoted String',
 "
 )},{
-  r: true, Nr: 3, desc_EN: "Multiline String",
+  r: true, Nr: 3, desc_EN: "Multiline String and Key(quoted only)",
   case:
 (
 "
 String: '😎 hello multiline\
+world \
+everybody 1',
+`"Stri\
+ng`": '😎 hello multiline\
 world \
 everybody 1',
 
@@ -60,7 +64,7 @@ invalid := [
 'key': 'no matching delimiter(single quoted) in string,
 "
 )},{
-  r: false, Nr: 6, desc_EN: "Multiline in key",
+  r: false, Nr: 6, desc_EN: "Multiline in unescaped key",
   case:
 (
 "
