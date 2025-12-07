@@ -4,7 +4,7 @@
 
 /** @description JSON/JSON5-Parser / JSON-Stringifier
   * @author      Auto-Hawk
-  * @version     1.0.1
+  * @version     1.0.1a
   * @created     2025-11-11
   * @modified    2025-12-07
   * @see Specification<br>
@@ -183,20 +183,30 @@ class awkJSON5 {
 
       _pos++
       while ( (lCh := SubStr(fSrc,_pos,1)) != "" ) {
-        if ( lCh == "\" ) { ;Handle escaped chars
+
+        if ( lCh == "\" ) { ;escaped chars handling
 
           lNext := SubStr(fSrc, _pos + 1, 1)
           if ( lNext == '"' || lNext == "'" || lNext == "\" || lNext == "r" || lNext == "n"  || lNext == "t" || lNext == "f" || lNext == "v" || lNext == "/" ) {
             lVal .= "\" lNext
             _pos += 2
             continue
+          } else { ;Multiline handling
+            if ( SubStr(fSrc, _pos + 1, 2) == "`r`n" ) {
+             _pos += 3
+             continue
+            } else if ( lNext == '`n' || lNext == '`r' ) {
+              _pos += 2
+              continue
+            }
           }
 
         } else if ( lCh == lDelim ) {
           _pos++
           lIsTerminated := true
           break
-        }
+        } else if ( lCh == "`n" || lCh == "`r" ) ;unexpected end of string
+          break
 
         lVal .= lCh
         _pos++
@@ -205,8 +215,6 @@ class awkJSON5 {
       if ( !lIsTerminated )
          _Throw("Unterminated string literal [" SubStr(fSrc,lBeginPos, 20) " ...]" )
 
-      lVal := StrReplace(lVal, "\`r`n", "") ; Multi line string PC
-      lVal := StrReplace(lVal, "\`n", "")   ; Multi line string UNIX/MAC
       try {
         return this.UnescapeStr(lVal)
       } catch Error as e {

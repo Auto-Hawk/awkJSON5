@@ -8,25 +8,21 @@ valid := [
   case:
 (
 "
-S1: `"ending back-slash\\`",
-S2: `"ending back-slash and multiline\\\
- New Line`",
+S1: `"(S1)ending back-slash\\`",
+M1: `"(M1)multiline\\\`r`nNew Line`",
+M2: `"(M2)multiline\\\`nNew Line`",
+M3: `"(M3)multiline\\\`rNew Line`",
 "
-)
-
-},
-{
+)},{
   r: true, Nr: 2, desc_EN: "single/double quoted String",
   case:
 (
 "
 `"double quoted key`": `"double quoted String`",
-  'single quoted key': 'single quoted String',
-  unquotedKey: 'single quoted String',
+ 'single quoted key': 'single quoted String',
+ unquotedKey: 'single quoted String',
 "
-)
-},
-{
+)},{
   r: true, Nr: 3, desc_EN: "Multiline String",
   case:
 (
@@ -36,8 +32,15 @@ world \
 everybody 1',
 
 "
-)
-}
+)},{
+  r: true, Nr: 4, desc_EN: "Pathes",
+  case:
+(
+"
+  PathString1: 'C:\Program Files\AutoHotkey\UX\Templates',
+  PathString2: 'C:\\Program Files\\AutoHotkey\\UX\\Templates\\'
+"
+)}
 ]
 
 
@@ -49,16 +52,14 @@ invalid := [
 "
 `"Key: `"no matching delimiter(double quoted) in key`",
 "
-)},
-{
+)},{
   r: false, Nr: 5, desc_EN: "no matching delimiter(single quoted) in string",
   case:
 (
 "
 'key': 'no matching delimiter(single quoted) in string,
 "
-)},
-{
+)},{
   r: false, Nr: 6, desc_EN: "Multiline in key",
   case:
 (
@@ -68,27 +69,32 @@ ng: '😎 hello multiline\
 world \
 everybody 2',
 "
-)
-}
+)},{
+  r: false, Nr: 7, desc_EN: "Unterminated string literal",
+  case:
+(
+"
+  PathString1: 'C:\\,
+  PathString2: 'C:\Program Files\AutoHotkey\UX\Templates',
+"
+)}
 ]
 
 values := []
 values.Push(valid*)
 values.Push(invalid*)
 
-
 /*
-values := [
-{
-  r: false, Nr: 5, desc_EN: "no matching delimiter(single quoted) in string",
+values := [{
+  r: true, Nr: 4, desc_EN: "Pathes",
   case:
 (
 "
-'key': 'no matching delimiter(single quoted) in string,
+  PathString1: 'C:\\,
+  PathString2: 'C:\Program Files\AutoHotkey\UX\Templates',
+  PathString3: 'C:\\Program Files\\AutoHotkey\\UX\\Templates\\'
 "
-)
-}
-]
+)}]
 */
 
 
