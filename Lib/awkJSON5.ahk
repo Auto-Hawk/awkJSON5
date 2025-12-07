@@ -53,8 +53,7 @@ class awkJSON5 {
             return 0
           else {
             try {
-              lNumber := lVal + 0
-              return lNumber
+              return (lVal + 0)
             } catch {
               if (lVal == "null")
                 return "" ;representation of NULL in AHK2
