@@ -4,7 +4,7 @@
 
 valid := [
 {
-  r: true, Nr: 1, desc_DE: "ending back-slash and multiline",
+  r: true, Nr: 1, desc_EN: "ending back-slash and multiline",
   case:
 (
 "
@@ -16,7 +16,7 @@ S2: `"ending back-slash and multiline\\\
 
 },
 {
-  r: true, Nr: 2, desc_DE: "single/double quoted String",
+  r: true, Nr: 2, desc_EN: "single/double quoted String",
   case:
 (
 "
@@ -27,7 +27,7 @@ S2: `"ending back-slash and multiline\\\
 )
 },
 {
-  r: true, Nr: 3, desc_DE: "Multiline String",
+  r: true, Nr: 3, desc_EN: "Multiline String",
   case:
 (
 "
@@ -43,25 +43,23 @@ everybody 1',
 
 invalid := [
 {
-  r: false, Nr: 4, desc_DE: "no matching delimiter(double quoted) in key",
+  r: false, Nr: 4, desc_EN: "no matching delimiter(double quoted) in key",
   case:
 (
 "
 `"Key: `"no matching delimiter(double quoted) in key`",
-`Key`": `"no matching delimiter(double quoted) in key`",
 "
 )},
 {
-  r: false, Nr: 5, desc_DE: "no matching delimiter(single quoted) in string",
+  r: false, Nr: 5, desc_EN: "no matching delimiter(single quoted) in string",
   case:
 (
 "
 'key': 'no matching delimiter(single quoted) in string,
-'key': no matching delimiter(single quoted) in string',
 "
 )},
 {
-  r: false, Nr: 6, desc_DE: "Multiline in key",
+  r: false, Nr: 6, desc_EN: "Multiline in key",
   case:
 (
 "
@@ -82,7 +80,7 @@ values.Push(invalid*)
 /*
 values := [
 {
-  r: false, Nr: 5, desc_DE: "no matching delimiter(single quoted) in string",
+  r: false, Nr: 5, desc_EN: "no matching delimiter(single quoted) in string",
   case:
 (
 "
@@ -98,8 +96,6 @@ lValidCount := 0
 lInvalidCount := 0
 for eVal in values {
 
-
-
   JSON5Text :=
 (
 "{" eVal.case "}"
@@ -109,7 +105,7 @@ try {
 				obj:= awkJSON5Dev.Parse(&JSON5Text,true)
 
 				if (eval.r) {
-          lMsg := "✔ " eVal.Nr " VALID " eval.desc_DE
+          lMsg := "✔ " eVal.Nr " VALID " eval.desc_EN
           lValidCount++
         }
         else
@@ -118,7 +114,7 @@ try {
 		} catch Error as e {
 
 			  if (!eval.r) {
-         lMsg := "✖ " eVal.Nr " INVALID " eval.desc_DE
+         lMsg := "✖ " eVal.Nr " INVALID " eval.desc_EN
          lInvalidCount++
         } else {
          lMsg := "✖(✔) " eVal.Nr " INVALID " e.Message "->`n" JSON5Text
