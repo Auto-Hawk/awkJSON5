@@ -4,9 +4,9 @@
 
 /** @description JSON/JSON5-Parser / JSON-Stringifier
   * @author      Auto-Hawk
-  * @version     1.0.0
+  * @version     1.0.1
   * @created     2025-11-11
-  * @modified
+  * @modified    2025-12-07
   * @see Specification<br>
   * https://json5.org<br>
   * https://spec.json5.org
@@ -174,28 +174,39 @@ class awkJSON5 {
       return lArr
     }
 
+
     _ParseString() {
       lDelim := SubStr(fSrc, _pos, 1)
       lVal := ""
-      _pos++
+      lBeginPos := _pos
+      lIsTerminated := false
 
-      while true {
-        TemPos := InStr(fSrc, lDelim, false, _pos)
-        if (!TemPos)
-          _Throw("Unterminated string literal [" SubStr(fSrc,_pos - 1, 10) " ...]" )
-        segment := SubStr(fSrc, _pos, TemPos - _pos)
-        if (SubStr(segment, -1) != "\") {
-          lVal .= segment
+      _pos++
+      while ( (lCh := SubStr(fSrc,_pos,1)) != "" ) {
+        if ( lCh == "\" ) { ;Handle escaped chars
+
+          lNext := SubStr(fSrc, _pos + 1, 1)
+          if ( lNext == '"' || lNext == "'" || lNext == "\" || lNext == "r" || lNext == "n"  || lNext == "t" || lNext == "f" || lNext == "v" || lNext == "/" ) {
+            lVal .= "\" lNext
+            _pos += 2
+            continue
+          }
+
+        } else if ( lCh == lDelim ) {
+          _pos++
+          lIsTerminated := true
           break
         }
-        lVal .= SubStr(segment, 1, -1) . lDelim
-        _pos := TemPos + 1
 
+        lVal .= lCh
+        _pos++
       }
+
+      if ( !lIsTerminated )
+         _Throw("Unterminated string literal [" SubStr(fSrc,lBeginPos, 20) " ...]" )
+
       lVal := StrReplace(lVal, "\`r`n", "") ; Multi line string PC
       lVal := StrReplace(lVal, "\`n", "")   ; Multi line string UNIX/MAC
-      _pos := TemPos + 1
-
       try {
         return this.UnescapeStr(lVal)
       } catch Error as e {

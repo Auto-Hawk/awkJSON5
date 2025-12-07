@@ -121,7 +121,8 @@ Converts AHK data structures ( objects or maps ) to a **JSON** string.
 
 ## Development Status
 
-Version **1.0.0** – stable.
+Version **1.0.1** – stable.
+see CHANGELOG.md
 
 ## References
 
