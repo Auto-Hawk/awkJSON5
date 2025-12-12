@@ -5,3 +5,4 @@
 #Include Misc.ahk
 #Include debug.ahk
 #Include awkJSON5.ahk
+#Include awkPerfCounter.ahk

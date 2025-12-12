@@ -11,22 +11,21 @@ baseCases := [
 ]
 
 testCases2 := [
+    "Line1`nLine2",
     "Hello World",
     "`"Hello World`"",
     '`'Hello World`'',
-    "Line1`nLine2",
     "Tab`tSeparated",
     "Quote: `"`"",
     "Backslash: \\",
     "Slash / and \/ escaped",
-    "Control:`b`f`r",
     "Unicode: äöü ÄÖÜ ß",
     "Mixed: `t`"Line`nWith\\Backslash\u2764",
     "",                                      ; leerer String
     "`"",                                    ; nur ein Anführungszeichen
     "\\",                                    ; nur ein Backslash
     "\/\/",                                  ; nur Slashes
-    "`n`t`r`b`f",                            ; nur Steuerzeichen
+    "Control: `n`t`r`b`f",                            ; nur Steuerzeichen
     "Emoji: 😀😎🚀",                          ; Emojis
     "Non-ASCII: 漢字, кириллица, عربى",      ; andere Unicode-Zeichen
     "Long text: " awk_StrRepeat("ABCD1234", 50), ; langer String
@@ -44,25 +43,34 @@ testCases2 := [
 ; -------------------------------------------------
 ; Testfunktionen
 ; -------------------------------------------------
-TestEscapeAndUnescape() {
 
+TestEscapeAndUnescape() {
+    global lValidCount := 0
     ;For index, str in baseCases {
     for index, str in testCases2 {
         escaped := awkJSON5Dev.EscapeStr(str, fQuote := '"')
         unescaped := awkJSON5Dev.UnescapeStr(escaped)
         isEqual := ('"' str '"' = unescaped) ? "✔" : "✖"
+        if ( isEqual )
+         lValidCount++
 
         OutputDebugLine("Test " index ":")
         OutputDebugLine("Original   : " '"' str '"')
         OutputDebugLine("Unescaped  : " unescaped)
         OutputDebugLine("Escaped    : " escaped)
         OutputDebugLine("Result     : " isEqual)
-        OutputDebugLine("---------------------------")
+        OutputDebugLine("───────────────────────────────────────────")
     }
+
 }
 
 ; -------------------------------------------------
 ; Script ausführen
 ; -------------------------------------------------
+Perf := awkPerfCounter(1000)
+Perf.Reset()
 TestEscapeAndUnescape()
-;MsgBox "Tests abgeschlossen. Prüfe OutputDebugView oder Debugger."
+lTime := Perf.Measure()
+OutputDebugLine "`n━━━━ Summary ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+OutputDebugLine ((testCases2.Length == lValidCount) ? "✔" : "✖") " Total Valids " testCases2.Length ", Valids=" lValidCount
+OutputDebugLine "elapsed time [ms] " lTime
