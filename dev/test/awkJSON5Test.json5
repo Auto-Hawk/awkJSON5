@@ -1,4 +1,7 @@
-﻿
+﻿{ data: { "text": "Line1\nLine2\t\ua3A9\rEnd" }
+}
+
+/*
 { \u03A3: "unquoted key",
   sig\u03A3ma: "the sum of all things",
 "MLText\
@@ -7,3 +10,5 @@ Line2.\
 Line3.\
 "
 }
+*/
+

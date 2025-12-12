@@ -193,7 +193,7 @@ class awkJSON5 {
             case "r": lCh := "`r" ;CR
             case "u": ;unicode escape \uXXXX
                     _pos += 2
-                    if ( RegExMatch(fSrc, "[^0-9i)a-f]",,_pos) - _pos != 4 )
+                    if ( RegExMatch(fSrc, "[^0-9A-Fa-f]",,_pos) - _pos != 4 )
                       _Throw("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fSrc, _pos, 10) "...]" )
 
                     lVal .= Chr("0x" SubStr(fSrc, _pos, 4) )
@@ -415,7 +415,7 @@ class awkJSON5 {
             case "r": lCh := "`r" ;CR
             case "u": ;unicode escape \uXXXX
                     i += 2
-                    if ( RegExMatch(fStr, "[^0-9i)a-f]",,i) - i != 4 )
+                    if ( RegExMatch(fStr, "[^0-9A-Fa-f]",,i) - i != 4 )
                       throw Error("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fStr, i, 10) "...]" )
 
                     lResult .= Chr("0x" SubStr(fStr, i, 4) )
