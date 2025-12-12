@@ -185,20 +185,38 @@ class awkJSON5 {
 
         if ( lCh == "\" ) { ;escaped chars handling
 
-          lNext := SubStr(fSrc, _pos + 1, 1)
-          if ( lNext == '"' || lNext == "'" || lNext == "\" || lNext == "r" || lNext == "n"  || lNext == "t" || lNext == "f" || lNext == "v" || lNext == "/" ) {
-            lVal .= "\" lNext
-            _pos += 2
-            continue
-          } else { ;Multiline handling
-            if ( SubStr(fSrc, _pos + 1, 2) == "`r`n" ) {
-             _pos += 3
-             continue
-            } else if ( lNext == '`n' || lNext == '`r' ) {
-              _pos += 2
-              continue
-            }
+          lCh := SubStr(fSrc, _pos + 1, 1)
+          switch lCh {
+            case '"', "'", "\", "/":
+            case "t": lCh := "`t" ;horizontal tab
+            case "n": lCh := "`n" ;LF
+            case "r": lCh := "`r" ;CR
+            case "u": ;unicode escape \uXXXX
+                    _pos += 2
+                    if ( RegExMatch(fSrc, "[^0-9i)a-f]",,_pos) - _pos != 4 )
+                      _Throw("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fSrc, _pos, 10) "...]" )
+
+                    lVal .= Chr("0x" SubStr(fSrc, _pos, 4) )
+                    _pos += 4
+                    continue
+            case '`r', '`n':   ;multiline handling
+                    if ( SubStr(fSrc, _pos + 2, 1 ) == '`n' )  ; CR/LF
+                      _pos += 3
+                    else
+                      _pos += 2 ;single CR or LF
+                    continue
+            case "b": lCh := "`b" ;backspace
+            case "f": lCh := "`f" ;form feed
+            case "v": lCh := "`v" ;vertical tab
+            case "0": lCh := "" ;representation of NULL in AHK2
+            default: ; no escaped char
+
+               lVal .= "\" lCh
+               _pos += 2
+               continue
+
           }
+          _pos++
 
         } else if ( lCh == lDelim ) {
           _pos++
@@ -214,11 +232,7 @@ class awkJSON5 {
       if ( !lIsTerminated )
          _Throw("Unterminated string literal [" SubStr(fSrc,lBeginPos, 20) " ...]" )
 
-      try {
-        return this.UnescapeStr(lVal)
-      } catch Error as e {
-        _Throw(e.Message)
-      }
+      return lVal
     }
 
     _SkipWhitespace() {
@@ -380,7 +394,7 @@ class awkJSON5 {
       return fQuote . lResult . fQuote
 	}
 
-  /** @description Unescapes a JSON5/JSON String
+ /** @description Unescapes a JSON5/JSON String including multiline strings
    * @param {(String)} fStr - the string to be unescaped
    * @returns {(String)} Returns the unescaped JSON string.
    */
@@ -388,42 +402,51 @@ class awkJSON5 {
     lResult := ""
     i := 1
     len := StrLen(fStr)
+    while( i <= len ) {
 
-    while (i <= len) {
-      c := SubStr(fStr, i, 1)
-      if( c == "\" ) {
-        next := SubStr(fStr, ++i, 1)
-        switch next {
-            case "'":  lResult .= "'"
-            case '"':  lResult .= '"'
-            case "\":  lResult .= "\"
-            case "/":  lResult .= "/"
-            case "b":  lResult .= "`b"
-            case "f":  lResult .= "`f"
-            case "n":  lResult .= "`n"
-            case "r":  lResult .= "`r"
-            case "t":  lResult .= "`t"
-            case "v":  lResult .= "`v"
-            case "0":  lResult .= "" ; representation of NULL in AHK2
-            case "u":  ;\uXXXX
-                    hex := SubStr(fStr, i + 1, 4)
-                    if ( !(hex ~= "^[0-9A-Fa-f]{4}$") )
-                      throw Error("Invalid unicode escape (must be exactly 4 digits)")
+      lCh := SubStr(fStr, i, 1)
+      if( lCh == "\" ) {
 
-                    lResult .= Chr("0x" hex)
+        lCh := SubStr(fStr, i + 1, 1)
+        switch lCh {
+            case '"', "'", "\", "/":
+            case "t": lCh := "`t" ;horizontal tab
+            case "n": lCh := "`n" ;LF
+            case "r": lCh := "`r" ;CR
+            case "u": ;unicode escape \uXXXX
+                    i += 2
+                    if ( RegExMatch(fStr, "[^0-9i)a-f]",,i) - i != 4 )
+                      throw Error("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fStr, i, 10) "...]" )
+
+                    lResult .= Chr("0x" SubStr(fStr, i, 4) )
                     i += 4
-            default:
-                lResult .= "\" next
-        }
+                    continue
+            case '`r', '`n':   ;multiline handling
+                    if ( SubStr(fStr, i + 2, 1 ) == '`n' )  ; CR/LF
+                      i += 3
+                    else
+                      i += 2 ;single CR or LF
+                    continue
+            case "b": lCh := "`b" ;backspace
+            case "f": lCh := "`f" ;form feed
+            case "v": lCh := "`v" ;vertical tab
+            case "0": lCh := "" ;representation of NULL in AHK2
+            default: ; no escaped char
 
-      } else {
-        lResult .= c
+              lResult .= "\" lCh
+              i += 2
+              continue
+        }
+        i++
       }
+
+      lResult .= lCh
       i++
 
     }
 
     return lResult
+
   }
 
 }
