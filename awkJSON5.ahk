@@ -192,13 +192,13 @@ class awkJSON5 {
             case "n": lCh := "`n" ;LF
             case "r": lCh := "`r" ;CR
             case "u": ;unicode escape \uXXXX
-                    _pos += 2
-                    if ( RegExMatch(fSrc, "[^0-9A-Fa-f]",,_pos) - _pos != 4 )
-                      _Throw("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fSrc, _pos, 10) "...]" )
-
-                    lVal .= Chr("0x" SubStr(fSrc, _pos, 4) )
-                    _pos += 4
-                    continue
+                    try {
+                      lVal .= Chr("0x" SubStr(fSrc, _pos + 2, 4) )
+                      _pos += 6
+                      continue
+                    } catch {
+                      _Throw("Invalid unicode escape (must be exactly 4 digits) [" SubStr(fSrc, _pos - 1, 10) "...]" )
+                    }
             case '`r', '`n':   ;multiline handling
                     if ( SubStr(fSrc, _pos + 2, 1 ) == '`n' )  ; CR/LF
                       _pos += 3
@@ -414,13 +414,14 @@ class awkJSON5 {
             case "n": lCh := "`n" ;LF
             case "r": lCh := "`r" ;CR
             case "u": ;unicode escape \uXXXX
-                    i += 2
-                    if ( RegExMatch(fStr, "[^0-9A-Fa-f]",,i) - i != 4 )
-                      throw Error("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fStr, i, 10) "...]" )
-
-                    lResult .= Chr("0x" SubStr(fStr, i, 4) )
-                    i += 4
-                    continue
+                      try {
+                        hex := SubStr(fStr, _pos + 2, 4)
+                        lVal .= Chr("0x" SubStr(fStr, _pos + 2, 4) )
+                        _pos += 6
+                        continue
+                      } catch {
+                        throw Error("Invalid unicode escape (must be exactly 4 digits) [\u" SubStr(fStr, i, 10) "...]" )
+                      }
             case '`r', '`n':   ;multiline handling
                     if ( SubStr(fStr, i + 2, 1 ) == '`n' )  ; CR/LF
                       i += 3

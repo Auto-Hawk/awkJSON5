@@ -15,8 +15,8 @@ valid := [
   case: "\r\n  \t\v\b\f\0",
   expected: "`r`n  `t`v`b`f"
 }, { Nr: 4, desc_EN: "Unicode",
-  case: "\u0030 \u0009 \u2764",
-  expected: "0 `t ❤"
+  case: "\u00301 \u0009 \u2764",
+  expected: "01 `t ❤"
 }, { Nr: 5, desc_EN: "Multiline CRLF,CR and LF",
   case:
 (

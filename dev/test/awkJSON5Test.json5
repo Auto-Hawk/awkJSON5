@@ -1,7 +1,21 @@
-﻿{ data: { "text": "Line1\nLine2\t\ua3A9\rEnd" }
+﻿
+{
+    // Main title of the document
+    title: 'json5 example', // JSON5 allows single quotes
+    number: 123,            // Numbers remain the same
+    boolean: true,          // Booleans remain the same
+    nested: {
+        a: 'b',               // No need for quotes on simple property names
+    },                      // Trailing commas are allowed
+    multiLineString: "this is \
+    a multi-line string", // Multi-line strings
 }
 
 /*
+{ data: { "text": "Line1\nLine2\t\ua3A9\rEnd" }
+}
+
+
 { \u03A3: "unquoted key",
   sig\u03A3ma: "the sum of all things",
 "MLText\
